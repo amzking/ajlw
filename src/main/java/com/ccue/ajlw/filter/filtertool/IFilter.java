@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IFilter {
 
-    List filterData();
+    List filterData(List list);
 
     void updateConfig();
 

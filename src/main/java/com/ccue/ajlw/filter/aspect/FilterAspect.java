@@ -2,6 +2,7 @@ package com.ccue.ajlw.filter.aspect;
 
 import com.ccue.ajlw.filter.anotation.Filter;
 import com.ccue.ajlw.filter.filtertool.IFilter;
+import com.ccue.ajlw.utils.SpringContextUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Aspect;
@@ -35,9 +36,10 @@ public class FilterAspect {
         Filter f = targetMethod.getAnnotation(Filter.class);
         Class clazz = f.value();
         Class filterClazz = f.filter();
+        IFilter filterProcessor = (IFilter) SpringContextUtil.getBean(filterClazz);
 
         List list = (List) objects[0];
-
+        filterProcessor.filterData(list);
 
 
 
